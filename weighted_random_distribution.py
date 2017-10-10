@@ -1,5 +1,5 @@
 #!/usr/bin/env python2
-from random_generation import custom_random_integer, initialize_generator
+from random_generation import rand_int, initialize_generator
 from datetime import datetime
 import argparse
 
@@ -16,7 +16,7 @@ if __name__ == "__main__":
         help="probability of lower half elements of given range")
     ap.add_argument("-u", "--upper", type=int, default=73,
         help="probability of upper half elements of given range")
-    ap.add_argument("-t", "--total", type=int, default=1000,
+    ap.add_argument("-t", "--total", type=int, default=100,
         help="Total number of samples")    
     args = vars(ap.parse_args())
 
@@ -34,12 +34,12 @@ if __name__ == "__main__":
     random_number['H'] = 0   # "L" is for lower half. "H" is for Upper half.
 
     for i in xrange(args.get('total')):
-        random_index = custom_random_integer(0,total_weights-1)
+        random_index = rand_int(0,total_weights-1)
         if random_index < weights['L']:
-            random_lower_number.append(custom_random_integer(a,(b+a)/2))
+            random_lower_number.append(rand_int(a,(b+a)/2))
             random_number['L'] += 1 
         else:
-            random_upper_number.append(custom_random_integer((a+b+2)/2,b))
+            random_upper_number.append(rand_int((a+b+2)/2,b))
             random_number['H'] += 1
     print "low"
     print random_lower_number

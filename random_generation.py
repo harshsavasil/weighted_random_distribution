@@ -20,8 +20,10 @@ def initialize_generator(seed):
     for i in xrange(1,624):
         MT[i] = ((1812433253 * MT[i-1]) ^ ((MT[i-1] >> 30) + i)) & BITMASK_1
 
-
-def custom_random_integer(start, end):
+'''
+Generates random integers between 0 and 2^32 
+'''
+def custom_random_integer():
     global index
     global MT
     if index == 0:
@@ -33,7 +35,7 @@ def custom_random_integer(start, end):
     y ^= y >> 18
 
     index = (index + 1) % 624
-    return int(start + (1 + end - start) * y / 2**32)
+    return y
 
 def generate_numbers():
     "Generate an array of 624 untempered numbers"
@@ -43,3 +45,6 @@ def generate_numbers():
         MT[i] = MT[(i + 397) % 624] ^ (y >> 1)
         if y % 2 != 0:
             MT[i] ^= 2567483615
+
+def rand_int(start, end):
+    return int(start + (1 + end - start) * custom_random_integer() / 2**32)
