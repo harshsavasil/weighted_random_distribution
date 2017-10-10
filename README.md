@@ -9,3 +9,6 @@ List of Parameters - <br/>
 --total - total number of random numbers you want to generate. <br/>
 --lower - probability of elements of lower half. <br/>
 --upper - probability of elements of upper half. <br/>
+
+There is no third party function used for generating random numbers , I have used 'Mersenne Twister' algorithm for generating pseudo random numbers. The Mersenne Twister is one of the most extensively tested random number generators in existence.
+Based on the pseudocode in https://en.wikipedia.org/wiki/Mersenne_Twister. Generates uniformly distributed 32-bit integers in the range [0, 232 − 1] with the MT19937 algorithm.
